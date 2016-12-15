@@ -1,5 +1,5 @@
 package model;
-// Generated 22/11/2016 08:31:48 PM by Hibernate Tools 4.3.1
+// Generated 14/12/2016 11:35:20 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -37,12 +37,13 @@ public class Personas  implements java.io.Serializable {
      private String telefono;
      private String internas;
      private String general;
+     private String tipo;
 
     public Personas() {
     }
 
 	
-    public Personas(Barrio barrio, String nombre, String apellido, String ci, Date fechanac, String direccion, String genero, String telefono) {
+    public Personas(Barrio barrio, String nombre, String apellido, String ci, Date fechanac, String direccion, String genero, String telefono, String tipo) {
         this.barrio = barrio;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -51,8 +52,9 @@ public class Personas  implements java.io.Serializable {
         this.direccion = direccion;
         this.genero = genero;
         this.telefono = telefono;
+        this.tipo = tipo;
     }
-    public Personas(Barrio barrio, String nombre, String apellido, String ci, Date fechanac, String direccion, String profesion, String genero, String telefono, String internas, String general) {
+    public Personas(Barrio barrio, String nombre, String apellido, String ci, Date fechanac, String direccion, String profesion, String genero, String telefono, String internas, String general, String tipo) {
        this.barrio = barrio;
        this.nombre = nombre;
        this.apellido = apellido;
@@ -64,6 +66,7 @@ public class Personas  implements java.io.Serializable {
        this.telefono = telefono;
        this.internas = internas;
        this.general = general;
+       this.tipo = tipo;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -186,6 +189,16 @@ public class Personas  implements java.io.Serializable {
     
     public void setGeneral(String general) {
         this.general = general;
+    }
+
+    
+    @Column(name="tipo", nullable=false, length=45)
+    public String getTipo() {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 

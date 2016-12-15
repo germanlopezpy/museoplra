@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/11/2016 08:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 11:35:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Nivel" table="nivel" catalog="museoplra" optimistic-lock="version">
         <id name="idNivel" type="java.lang.Integer">
