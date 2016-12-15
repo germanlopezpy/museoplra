@@ -1,5 +1,5 @@
 package model;
-// Generated 22/11/2016 08:31:48 PM by Hibernate Tools 4.3.1
+// Generated 14/12/2016 11:35:20 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class Nivel  implements java.io.Serializable {
      private Set usuarios = new HashSet(0);
 
     public Nivel() {
-        this.idNivel=0;
+      this.idNivel=0;
     }
 
 	
