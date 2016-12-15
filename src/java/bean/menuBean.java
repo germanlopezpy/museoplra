@@ -46,6 +46,10 @@ public class menuBean {
             item = new DefaultMenuItem("Distrito");
             item.setIcon("ui-icon-folder-open");
 
+            
+            item = new DefaultMenuItem("Otro cambio");
+            item.setIcon("ui-icon-folder-open");
+            
             secondSubmenu.addElement(item);
 
             model.addElement(cSubmenu);
