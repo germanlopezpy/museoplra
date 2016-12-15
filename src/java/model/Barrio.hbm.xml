@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 08:31:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Barrio" table="barrio" catalog="museoplra" optimistic-lock="version">
+        <id name="idBarrio" type="java.lang.Integer">
+            <column name="idBarrio" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="compania" class="model.Compania" fetch="select">
+            <column name="Compania_idComp" not-null="true" />
+        </many-to-one>
+        <property name="nombrebarrio" type="string">
+            <column name="nombrebarrio" length="45" not-null="true" />
+        </property>
+        <set name="personases" table="personas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Barrio_idBarrio" not-null="true" />
+            </key>
+            <one-to-many class="model.Personas" />
+        </set>
+    </class>
+</hibernate-mapping>

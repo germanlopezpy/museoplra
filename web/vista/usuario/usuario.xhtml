@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../Template.xhtml">
+
+            <ui:define name="body">
+                <p:growl id="msgs" showDetail="true" /> 
+                <h:form id="formDataTable">  
+
+                    <p:commandButton  id="bntUsuarioCreate" update=":formCreate" oncomplete="PF('dialogUsuarioCreate').show()" icon="icon-add" title="Nuevo"/>
+
+                    <p:dataTable id="cars" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" rowKey="#{usuario}"
+                                 paginator="true" rows="5"   paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5,10,15" emptyMessage="No se encontró ningún resultado" >  
+                        <f:facet name="header">  
+                            Lista de Usuarios 
+                        </f:facet>    
+
+                        <p:column sortBy="idusu" filterBy="#{usuario.idUsuario}" headerText="Id" style="width:10%;text-align: center"
+                                  filterMatchMode="contains"> 
+                            <f:facet name="header">
+                                <h:outputText value="ID_USUARIO" />
+                            </f:facet>
+                            <h:outputText value="#{usuario.idUsuario}" />  
+                        </p:column> 
+
+                        <p:column sortBy="usuario" headerText="Usuario" style="width:8%;text-align: center" filterBy="#{usuario.usuario}"   
+                                  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="USUARIO" />
+                            </f:facet>
+                            <h:outputText value="#{usuario.usuario}" />  
+                        </p:column>  
+
+                        <p:column sortBy="nombre" filterBy="#{usuario.titular}" headerText="RESPONSABLE" style="width:8%;text-align: center"
+                                  filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="RESPONSABLE" />
+                            </f:facet>
+                            <h:outputText value="#{usuario.titular}" />  
+                        </p:column> 
+
+
+                        <p:column sortBy="nivel" filterBy="#{usuario.nivel.tipo}" headerText="Nivel" style="width:15%;text-align: center">  
+                            <f:facet name="header">
+                                <h:outputText value="NIVEL" />
+                            </f:facet>
+                            <h:outputText value="#{usuario.nivel.tipo}" />  
+                        </p:column> 
+
+                        <p:column style="width:10%;text-align: center" headerText="Acción" >  
+                            <p:commandButton id="bntUsuarioUpdate" update=":formUpdate" oncomplete="PF('dialogUsuarioUpdate').show()"  icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.selectedUsuario}" />  
+                            </p:commandButton>
+                            &nbsp;
+                            <p:commandButton id="bntUsuarioDelete" update=":formDelete" oncomplete="PF('dialogUsuarioDelete').show()" icon="icon-delete" title="Borrar">  
+                                <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.selectedUsuario}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+
+                    </p:dataTable>  
+                </h:form>
+
+
+                <h:form id="reportes">
+                    <h:panelGrid columns="1" id="paneles">
+                        <p:panel  header="Reporte de Usuarios" style="width: 180px;text-align: center" >       
+
+                            <h:commandLink title="Exportar" >
+                                <p:graphicImage value="./../../resources/images/icons/excel.png" />
+                                <p:dataExporter type="xls" target=":formDataTable:cars" fileName="usuarios"   />
+                            </h:commandLink>
+                        </p:panel>
+                    </h:panelGrid>
+                </h:form>
+
+                <p:dialog header="Crear Usuario" widgetVar="dialogUsuarioCreate" resizable="false" dynamic="true" id="dlgUsuarioCreate"  
+                          showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)" closeOnEscape="true" position="top">  
+                    <h:form id="formCreate">
+                        <p:tabView onTabClose="true" >
+                            <p:tab id="tab1" title="Usuario">
+                                <p:panel>
+                                    <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;" columnClasses="alinder, alinizq">  
+
+                                        <h:outputText  value="Nivel:" />  
+                                        <p:selectOneMenu style="width: 90%"  id="idnivel" value="#{usuarioBean.selectedUsuario.nivel.idNivel}" required="true" requiredMessage="Seleccione una opción">  
+                                            <f:selectItems value="#{nivelBean.selectOneItemsNivel}" />  
+                                        </p:selectOneMenu> 
+
+
+                                        <p:commandButton id="bntNivelCreateN" update=":formCreateN" oncomplete="PF('dialogNivelCreateN').show()" icon="icon-add" title="Agregar Nivel"/>
+
+
+                                        <h:outputText value="Usuario:" /> 
+                                        <p:inputText  id="usuario" value="#{usuarioBean.selectedUsuario.usuario}" required="true" requiredMessage="Usuario inválido"/>  
+                                        <p:message for="usuario"/>
+
+                                        <h:outputText  value="Contraseña:" />
+                                        <p:inputText id="contra" value="#{usuarioBean.selectedUsuario.password}" required="true" requiredMessage="Contraseña inválida"/> 
+                                        <p:message for="contra"/>
+                                    </h:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+
+                            <p:tab id="tab2" title="Datos Personales">
+                                <p:panel>
+                                    <h:panelGrid>
+                                        <h:outputText value="Titular:" /> 
+                                        <p:inputText size="60" id="ape" value="#{usuarioBean.selectedUsuario.titular}" required="true" requiredMessage="Escriba el titular"/>  
+                                        <p:message for="ape"/>
+
+                                        <f:facet name="footer">
+                                            <p:separator/>
+                                            <p:commandButton id="bntCreateCancelar" oncomplete="PF('dialogUsuarioCreate').hide()" icon="icon-cancel" title="Cancelar" value="Cancelar" style="float: right;"/>  
+                                            <p:commandButton id="bntCreateAceptar" update=":formDataTable,@form" oncomplete="handleClose(xhr, status, args)" actionListener="#{usuarioBean.btnCreateUsuario(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar" style="float: right;"/>  
+                                        </f:facet>
+                                    </h:panelGrid>
+                                </p:panel>
+                            </p:tab>
+                        </p:tabView>
+
+
+                    </h:form>  
+                </p:dialog>  
+
+
+                <p:dialog position="top" header="Modificar Usuario" widgetVar="dialogUsuarioUpdate" resizable="false" id="dialogUsuarioUpdate"  
+                          showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)" closeOnEscape="true">  
+
+                    <h:form id="formUpdate">
+                        <p:tabView onTabClose="true" >
+                            <p:tab id="tab1" title="Usuario">
+                                <p:panel>
+                                    <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;" columnClasses="alinder, alinizq">  
+
+                                        <h:outputText  value="Nivel:" />  
+                                        <p:selectOneMenu id="idnivel" value="#{usuarioBean.selectedUsuario.nivel.idNivel}" required="true" requiredMessage="Seleccione una opción">  
+                                            <f:selectItems value="#{nivelBean.selectOneItemsNivel}" />  
+                                        </p:selectOneMenu> 
+                                        <p:message for="idnivel"/> 
+
+                                        <h:outputText value="Usuario:" /> 
+                                        <p:inputText  id="usuario" value="#{usuarioBean.selectedUsuario.usuario}" required="true" requiredMessage="Usuario inválido"/>  
+                                        <p:message for="usuario"/>
+
+                                        <h:outputText  value="Contraseña:" />
+                                        <p:inputText id="contra" value="#{usuarioBean.selectedUsuario.password}" required="true" requiredMessage="Contraseña inválida"/> 
+                                        <p:message for="contra"/>
+                                    </h:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+
+
+                            <p:commandButton id="bntUpdateAceptar" update=":formDataTable,@form" oncomplete="handleClose2(xhr, status, args)" actionListener="#{usuarioBean.btnUpdateUsuario(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                            <p:commandButton id="bntUpdateCancelar" oncomplete="PF('dialogUsuarioUpdate').hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+
+                            
+                           
+                        </p:tabView>  
+                    </h:form>
+                </p:dialog> 
+
+                <p:confirmDialog  id="DialogMessage" message="Estas Seguro de Eliminar el Usuario" header="Eliminar Usuario"
+                                  severity="alert" widgetVar="dialogUsuarioDelete"  showEffect="fade" hideEffect="explode" appendTo="@(body)" closeOnEscape="true">  
+                    <h:form id="formDelete">
+                        <h:inputHidden   value="#{usuarioBean.selectedUsuario.idUsuario}"/>  
+                        <p:commandButton id="confirm" value="Aceptar"  styleClass="ui-confirmdialog-yes" update=":formDataTable,:msgs" icon="ui-icon-check" oncomplete="dialogUsuarioDelete.hide()"
+                                         actionListener="#{usuarioBean.btnDeleteUsuario(actionEvent)}" />  
+                        <p:commandButton id="decline" value="Cancelar" styleClass="ui-confirmdialog-no" icon="icon-cancel" oncomplete="dialogUsuarioDelete.hide()"/>       
+                    </h:form>
+                </p:confirmDialog> 
+
+
+                <p:dialog position="top" header="Crear Nivel" widgetVar="dialogNivelCreateN" resizable="false" id="dlgNivelCreateN"  
+                          showEffect="fade" hideEffect="explode" modal="true" closeOnEscape="true" appendTo="@(body)" >  
+appendTo
+                    <h:form id="formCreateN">
+                        <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;" columnClasses="alinder, alinizq">  
+                            <h:outputText value="Id:" />  
+                            <p:inputText id="idnivel" disabled="false" value="#{nivelBean.selectedNivel.idNivel}" />
+                            <p:message for="idnivel"/>
+
+                            <h:outputText value="Tipo:" />
+                            <p:inputText id="nom" value="#{nivelBean.selectedNivel.tipo}" required="true" requiredMessage="Ingrese el Tipo de Nivel"/>
+                            <p:message for="nom"/>
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="bntCreateAceptar" update=":formCreate,@form"  oncomplete="handleClose3(xhr, status, args)"  actionListener="#{nivelBean.btnCreateNivel(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar" />  
+                                <p:commandButton id="bntCreateCancelar" oncomplete="PF('dialogNivelCreateN').hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid> 
+                    </h:form>  
+                </p:dialog>  
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+        <script type="text/javascript">
+            function handleClose(xhr, status, args) {
+                if (!args.validationFailed) {
+
+                    PF('dialogUsuarioCreate').hide();
+                }
+            }
+
+            function handleClose2(xhr, status, args) {
+                if (!args.validationFailed) {
+
+                    PF('dialogUsuarioUpdate').hide();
+                }
+            }
+
+            function handleClose3(xhr, status, args) {
+                if (!args.validationFailed) {
+
+                    PF('dialogNivelCreateN').hide();
+                }
+            }
+
+
+        </script>
+    </body>
+</html>

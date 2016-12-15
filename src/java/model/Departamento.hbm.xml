@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 08:31:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Departamento" table="departamento" catalog="museoplra" optimistic-lock="version">
+        <id name="idDep" type="java.lang.Integer">
+            <column name="idDep" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="model.Usuario" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="nombredep" type="string">
+            <column name="nombredep" length="45" not-null="true" />
+        </property>
+        <set name="distritos" table="distrito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Departamento_idDep" not-null="true" />
+            </key>
+            <one-to-many class="model.Distrito" />
+        </set>
+    </class>
+</hibernate-mapping>

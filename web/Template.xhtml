@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!--link href="# {appBean.baseUrl}resources/css/jsfcrud.css" rel="stylesheet" type="text/css" />-->
+        <h:outputStylesheet name="css/jsfcrud.css" />
+
+        <title><ui:insert name="title">MUSEO PLRA</ui:insert></title>
+
+
+    </h:head>
+
+    <h:body>
+        <p:layout  fullPage="true" >
+
+            <p:layoutUnit id="top" styleClass="myLayoutStyleClass" position="north" size="auto" resizable="true" collapsible="true">
+                <h:form>
+                    <br>
+                        <b>                                                        
+                            <div align="left" style="color: #045491; color: white; font-family: fantasy">
+                                P.L.R.A.
+                            </div>
+
+
+
+                            <div   align="right" style=" float: right;padding-top: 10px;"> 
+                                <h:outputText title="Usuario Logueado" value="#{loginBean.usuario.titular}"/>
+                                &nbsp;
+                                <p:commandButton  actionListener="#{loginBean.logout()}" oncomplete="handleLoginRequest(xhr, status, args)" icon="icon-lagout" immediate="true" title="Salir"></p:commandButton>
+                                <br/>                
+                                <p:commandButton title="Administrar Usuarios" action="#{mostrarBean.bntMostrarAdmin()}"  rendered="#{mostrarBean.mostrarBotones}" update=":form" icon="ui-icon-wrench" value="Usuario" immediate="true" ajax="false" ></p:commandButton>
+                                <p:commandButton title="Mantenimiento del Sistema" action="#{mostrarBean.bntMostrarSgp()}"  rendered="#{mostrarBean.mostrarBotones}" update=":form" icon="ui-icon-folder-open" value="Administrar" immediate="true" ajax="false" ></p:commandButton>
+
+                                <!--<p:clock  autoSync="true" pattern="dd/MM/yyyy - hh:mm:ss"/>-->
+                            </div>
+                        </b>
+                    </br>
+                </h:form>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit    position="west" size="auto" header="Gerenciar Valores" collapsible="true" id="left">
+                <h:form id="form">
+
+                    <p:menu id="menu2" model="#{menuBean2.model}" rendered="#{mostrarBean.mostrarMenuAdmin}" />
+                    <p:menu id="menu" model="#{menuBean.model}"    rendered="#{mostrarBean.mostrarMenuSgp}"/>
+
+                    <h:form>
+                        <p:growl autoUpdate="true"/>
+
+
+                    </h:form>
+
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+
+                <p>
+                    <ui:insert id="top" name="body">Default Body</ui:insert>
+
+                </p>
+
+
+                <div style="font-size: 10px" align="center" id="bootom" class="center_content centro" > 
+                    <p:separator/>
+                    <ui:insert name="bootom">&copy; By Desarrollo </ui:insert>
+                </div>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+
+
+
+
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.loggetOut) {
+                    location.href = args.ruta;
+                }
+            }
+        </script>
+
+    </h:body>
+
+
+</html>

@@ -1,0 +1,205 @@
+
+root { 
+  
+  display: block;
+    
+    
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3a4f54;
+    background-color: #045491;
+    font-size: small;
+    
+    
+}
+
+a {
+    color: #e33b06;
+}
+
+table {
+    empty-cells: show;
+}
+
+form.jsfcrud_list_form th, td th {
+    font-size: x-small;
+    color: #4e6a71;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #b2d5d6;
+    border-bottom-color: #b2d5d6;
+    border-left-color: #90b4bd;
+    border-right-color: #90b4bd;
+    letter-spacing: 3px;
+    text-align: left;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: #e33b06;
+}
+
+td {
+    vertical-align: top;
+    padding-bottom: 0px;
+    font-size: small;
+}
+
+form.jsfcrud_list_form td, td td {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #b2d5d6;
+    border-bottom-color: #b2d5d6;
+    border-left-color: #b2d5d6;
+    border-right-color: #b2d5d6;
+    vertical-align: baseline;
+    padding-bottom: 0px;
+}
+
+tr.jsfcrud_odd_row {
+    background-color: #fefeff;
+    color: #4e6a71;
+}
+
+
+tr.jsfcrud_even_row {
+    background-color: #eff5fa;
+    color: #4e6a71;
+}
+
+#busyImage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+#left {
+    float: left;
+    background-color: #045491;
+    padding: 0px;
+    width: 189px;
+    min-height: 800px;
+    font-size: small;
+}
+
+#top {
+    position: relative;
+    background-color: #045491;
+    color:  #e33b06;
+    padding: 0px;
+    min-height: 70px;
+    text-align: center;
+    font-weight: bold;
+    
+}
+#centrado{
+line-height: 600px;
+
+}
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 0px solid #AFAFAF; 
+    font-size:  10px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #045491;
+}
+h2 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    
+    font-size:  10px;
+    font-weight: bold;
+  
+    color: #045491;
+}
+
+
+.myLayoutStyleClass .ui-layout-unit-content{
+    
+    background: #045491;
+    border: 1px solid #4297D7;
+    color: #EAF5F7;
+    font-weight: bold;
+   
+}
+.top2{
+    color: #045491;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 210px;
+}
+#columncenter{
+    text-align: center;
+}
+.ui-state-default .icon-new{
+    background-image: URL(../images/icons/new.png);
+   
+}
+.ui-state-default .icon-edit{
+    background-image: URL(../images/icons/edit.png);
+}
+.ui-state-default .icon-delete{
+    background-image: URL(../images/icons/delete.png);
+}
+.ui-state-default .icon-save{
+    background-image: URL(../images/icons/save.png);
+}
+.ui-state-default .icon-cancel{
+    background-image: URL(../images/icons/cancel.png);
+}
+
+.ui-state-default .icon-lagout{
+    background-image: URL(../images/icons/lagout.png);
+    
+}
+
+.ui-state-default .icon-consulta{
+    background-image: URL(../images/icons/consulta.png);   
+}
+
+.ui-state-default .icon-add{
+    background-image: URL(../images/icons/add.png);
+     
+    
+}
+.ui-state-default .icon-imprimir{
+    background-image: URL(../images/icons/imprimir.png);   
+}
+
+.ui-state-default .icon-report{
+    background-image: URL(../images/icons/report.png);   
+}
+
+.ui-state-default .icon-detalle{
+    background-image: URL(../images/icons/detalle.png);   
+}
+#container{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alinizq{
+    text-align: left;
+}
+.alinder{
+    text-align: right;
+}
+.centro{
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 08:31:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Personas" table="personas" catalog="museoplra" optimistic-lock="version">
+        <id name="idPers" type="java.lang.Integer">
+            <column name="idPers" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="barrio" class="model.Barrio" fetch="select">
+            <column name="Barrio_idBarrio" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="45" not-null="true" />
+        </property>
+        <property name="ci" type="string">
+            <column name="ci" length="45" not-null="true" />
+        </property>
+        <property name="fechanac" type="date">
+            <column name="fechanac" length="10" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" not-null="true" />
+        </property>
+        <property name="profesion" type="string">
+            <column name="profesion" length="45" />
+        </property>
+        <property name="genero" type="string">
+            <column name="genero" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="45" not-null="true" />
+        </property>
+        <property name="internas" type="string">
+            <column name="internas" length="45" />
+        </property>
+        <property name="general" type="string">
+            <column name="general" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
