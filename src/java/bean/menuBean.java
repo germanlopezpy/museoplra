@@ -33,25 +33,25 @@ public class menuBean {
 
         if (idNivel == 1) {
 
-     
-            DefaultSubMenu secondSubmenu = new DefaultSubMenu("Administrar"); 
+            DefaultSubMenu secondSubmenu = new DefaultSubMenu("Administrar");
 
             item = new DefaultMenuItem("Departamento");
             item.setIcon("ui-icon-folder-open");
-          
-            secondSubmenu.addElement(item);
 
-            
+            secondSubmenu.addElement(item);
 
             model.addElement(secondSubmenu);
 
             DefaultSubMenu cSubmenu = new DefaultSubMenu("Procesos");
+            item = new DefaultMenuItem("Distrito");
+            item.setIcon("ui-icon-folder-open");
 
-            
+            secondSubmenu.addElement(item);
+
             model.addElement(cSubmenu);
-            
+
         }
-        
+
         if (idNivel == 2) {
 
             DefaultSubMenu secondSubmenu = new DefaultSubMenu("Mantenimiento");
@@ -60,34 +60,24 @@ public class menuBean {
             item.setIcon("ui-icon-folder-open");
             secondSubmenu.addElement(item);
 
-           
-
             model.addElement(secondSubmenu);
 
-            
-            
-         DefaultSubMenu cSubmenu = new DefaultSubMenu("Procesos");
+            DefaultSubMenu cSubmenu = new DefaultSubMenu("Procesos");
 
             model.addElement(cSubmenu);
         }
-  
-        
-       if (idNivel == 3) {
-           
+
+        if (idNivel == 3) {
+
             DefaultSubMenu cSubmenu = new DefaultSubMenu("Procesos");
 
             item = new DefaultMenuItem("Pedidos");
             item.setIcon("ui-icon-tag");
             cSubmenu.addElement(item);
-            
-           
 
             model.addElement(cSubmenu);
-        }  
-        
-        
-        
-        
+        }
+
     }
 
     public MenuModel getModel() {
